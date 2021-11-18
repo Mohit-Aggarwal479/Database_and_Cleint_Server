@@ -1,0 +1,595 @@
+mysql> CREATE DATABASE PETS_ROLES;
+Query OK, 1 row affected (0.08 sec)
+
+mysql> USE PETS_ROLES;
+Database changed
+mysql> CREATE TABLE LIFE_CYCLE (NAME VARCHAR(255), DESCRIPTION VARCHAR(500));
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> CREATE TABLE STEP (NAME VARCHAR(255), DESCRIPTION VARCHAR(500));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> CREATE TABLE CONDITION (NAME VARCHAR(255), DESCRIPTION VARCHAR(500));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONDITION (NAME VARCHAR(255), DESCRIPTION VARCHAR(500))' at line 1
+mysql> CREATE TABLE CONDITIONS (NAME VARCHAR(255), DESCRIPTION VARCHAR(500));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> CREATE TABLE TASK (NAME VARCHAR(255), DESCRIPTION VARCHAR(500));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> CREATE TABLE ROLES (NAME VARCHAR(255), DESCRIPTION VARCHAR(500));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> CREATE TABLE EFFORT_CATEGORIES (NAME VARCHAR(255), DESCRIPTION VARCHAR(500));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> CREATE TABLE ARTIFACTS (NAME VARCHAR(255), DESCRIPTION VARCHAR(500));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE PLANS (NAME VARCHAR(255), DESCRIPTION VARCHAR(500));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> CREATE TABLE INTERRUPTIONS (NAME VARCHAR(255), DESCRIPTION VARCHAR(500));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> CREATE TABLE DEFECTS (NAME VARCHAR(255), DESCRIPTION VARCHAR(500));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> ALTER TABLE LIFE_CYCLE
+    -> ADD UNIQUE(NAME,DESCRIPTION);
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE STEP
+    -> ADD UNIQUE(NAME,DESCRIPTION);
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE CONDITIONS
+    -> ADD UNIQUE(NAME,DESCRIPTION);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE TASK
+    -> ADD UNIQUE(NAME,DESCRIPTION);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE ROLES
+    -> ADD UNIQUE(NAME,DESCRIPTION);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE EFFORT_CATEGORIES
+    -> ADD UNIQUE(NAME,DESCRIPTION);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE ARTIFACTS
+    -> ADD UNIQUE(NAME,DESCRIPTION);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE PLANS
+    -> ADD UNIQUE(NAME,DESCRIPTION);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE INTERRUPTIONS
+    -> ADD UNIQUE(NAME,DESCRIPTION);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE DEFECTS
+    -> ADD UNIQUE(NAME,DESCRIPTION);
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE LIFE_CYCLE
+    -> ADD PRIMARY KEY(NAME);
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE STEP
+    -> ADD PRIMARY KEY(NAME);
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE CONDITIONS
+    -> ADD PRIMARY KEY(NAME);
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE TASK
+    -> ADD PRIMARY KEY(NAME);
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE ROLES
+    -> ADD PRIMARY KEY(NAME);
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE EFFORT_CATEGORIES
+    -> ADD PRIMARY KEY(NAME);
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE ARTIFACTS
+    -> ADD PRIMARY KEY(NAME);
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE PLANS
+    -> ADD PRIMARY KEY(NAME);
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE INTERRUPTIONS
+    -> ADD PRIMARY KEY(NAME);
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE DEFECTS
+    -> ADD PRIMARY KEY(NAME);
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> Terminal close -- exit!
+mysql> USE PETS_ROLES;
+Database changed
+mysql> ALTER TABLE TASK
+    -> ADD CONSTRAINT TASK_ROLE
+    -> FOREIGN KEY (NAME) REFERENCES ROLES(NAME);
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE TASK
+    -> ADD CONSTRAINT ARTIFACT_TASK
+    -> FOREIGN KEY (NAME) REFERENCES ARTIFACTS(NAME);
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE TASK
+    -> ADD CONSTRAINT TASK_EFFORT_CATEGORIES
+    -> FOREIGN KEY (NAME) REFERENCES EFFORT_CATEGORIES(NAME);
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE EFFORT_CATEGORIES
+    -> ADD CONSTRAINT EFFORT_CATEGORIE_ARTIFACT
+    -> FOREIGN KEY (NAME) REFERENCES ARTIFACTS(NAME);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE EFFORT_CATEGORIES
+    -> ADD CONSTRAINT EFFORT_CATEGORIE_PLANS
+    -> FOREIGN KEY (NAME) REFERENCES PLANS(NAME);
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE EFFORT_CATEGORIES
+    -> ADD CONSTRAINT EFFORT_CATEGORIE_INTERRUPTIONS
+    -> FOREIGN KEY (NAME) REFERENCES INTERRUPTIONS(NAME);
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE EFFORT_CATEGORIES
+    -> ADD CONSTRAINT EFFORT_CATEGORIE_DEFECTS
+    -> FOREIGN KEY (NAME) REFERENCES DEFECTS(NAME);
+Query OK, 0 rows affected (0.20 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC LIFE_CYCLE;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| NAME        | varchar(255) | NO   | PRI | NULL    |       |
+| DESCRIPTION | varchar(500) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0.10 sec)
+
+mysql> DESC STEP;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| NAME        | varchar(255) | NO   | PRI | NULL    |       |
+| DESCRIPTION | varchar(500) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> DESC CONDITIONS;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| NAME        | varchar(255) | NO   | PRI | NULL    |       |
+| DESCRIPTION | varchar(500) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> DESC TASK;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| NAME        | varchar(255) | NO   | PRI | NULL    |       |
+| DESCRIPTION | varchar(500) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> DESC ROLES;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| NAME        | varchar(255) | NO   | PRI | NULL    |       |
+| DESCRIPTION | varchar(500) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> DESC EFFORT_CATEGORIES;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| NAME        | varchar(255) | NO   | PRI | NULL    |       |
+| DESCRIPTION | varchar(500) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> DESC EFFORT_ARTIFACTS;
+ERROR 1146 (42S02): Table 'pets_roles.effort_artifacts' doesn't exist
+mysql> DESC ARTIFACTS;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| NAME        | varchar(255) | NO   | PRI | NULL    |       |
+| DESCRIPTION | varchar(500) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> DESC PLANS;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| NAME        | varchar(255) | NO   | PRI | NULL    |       |
+| DESCRIPTION | varchar(500) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> DESC INTERRUPTIONS;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| NAME        | varchar(255) | NO   | PRI | NULL    |       |
+| DESCRIPTION | varchar(500) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> DESC DEFECTS;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| NAME        | varchar(255) | NO   | PRI | NULL    |       |
+| DESCRIPTION | varchar(500) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0.07 sec)
+
+mysql> SELECT * TASK;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TASK' at line 1
+mysql> SELECT * FROM TASK;
+Empty set (0.08 sec)
+
+mysql> EXEC sp_help 'PETS_ROLES.TASK';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'EXEC sp_help 'PETS_ROLES.TASK'' at line 1
+mysql> EXEC sp_help 'PETS_ROLES.TASK'
+    -> GO
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'EXEC sp_help 'PETS_ROLES.TASK'
+GO' at line 1
+mysql> SELECT * FROM ROLES;
+Empty set (0.00 sec)
+
+mysql> SELECT TASK(NAME) FROM SYS.FOREIGN_KEYS;
+ERROR 1146 (42S02): Table 'sys.foreign_keys' doesn't exist
+mysql> SELECT TASK(NAME) FROM ROLES.FOREIGN_KEYS;
+ERROR 1049 (42000): Unknown database 'roles'
+mysql> SELECT TASK(NAME) FROM PETS_ROLES.FOREIGN_KEYS;
+ERROR 1146 (42S02): Table 'pets_roles.foreign_keys' doesn't exist
+mysql> SELECT ROLES(NAME) FROM PETS_ROLES.FOREIGN_KEYS;
+ERROR 1146 (42S02): Table 'pets_roles.foreign_keys' doesn't exist
+mysql> SELECT TASK(NAME) FROM PETS_ROLES.ROLES;
+ERROR 1305 (42000): FUNCTION pets_roles.TASK does not exist
+mysql> SELECT TASK(NAME) FROM PETS_ROLES.TASK;
+ERROR 1305 (42000): FUNCTION pets_roles.TASK does not exist
+mysql> SELECT TASK, NAME, TASK_ROLE, ROLES, NAME FROM TASK;
+ERROR 1054 (42S22): Unknown column 'TASK' in 'field list'
+mysql> SHOW CREATE TABLE TASK;
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| TASK  | CREATE TABLE `task` (
+  `NAME` varchar(255) NOT NULL,
+  `DESCRIPTION` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`NAME`),
+  UNIQUE KEY `NAME` (`NAME`,`DESCRIPTION`),
+  CONSTRAINT `ARTIFACT_TASK` FOREIGN KEY (`NAME`) REFERENCES `artifacts` (`NAME`),
+  CONSTRAINT `TASK_EFFORT_CATEGORIES` FOREIGN KEY (`NAME`) REFERENCES `effort_categories` (`NAME`),
+  CONSTRAINT `TASK_ROLE` FOREIGN KEY (`NAME`) REFERENCES `roles` (`NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.07 sec)
+
+mysql> SHOW CREATE TABLE ROLES;
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                            |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ROLES | CREATE TABLE `roles` (
+  `NAME` varchar(255) NOT NULL,
+  `DESCRIPTION` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`NAME`),
+  UNIQUE KEY `NAME` (`NAME`,`DESCRIPTION`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE LIFE_CYCLE;
++------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table      | Create Table                                                                                                                                                                                                                                 |
++------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| LIFE_CYCLE | CREATE TABLE `life_cycle` (
+  `NAME` varchar(255) NOT NULL,
+  `DESCRIPTION` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`NAME`),
+  UNIQUE KEY `NAME` (`NAME`,`DESCRIPTION`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE STEP;
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                           |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| STEP  | CREATE TABLE `step` (
+  `NAME` varchar(255) NOT NULL,
+  `DESCRIPTION` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`NAME`),
+  UNIQUE KEY `NAME` (`NAME`,`DESCRIPTION`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE CONDITIONS;
++------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table      | Create Table                                                                                                                                                                                                                                 |
++------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| CONDITIONS | CREATE TABLE `conditions` (
+  `NAME` varchar(255) NOT NULL,
+  `DESCRIPTION` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`NAME`),
+  UNIQUE KEY `NAME` (`NAME`,`DESCRIPTION`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE EFFORT_CATEGORIES;
++-------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table             | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
++-------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| EFFORT_CATEGORIES | CREATE TABLE `effort_categories` (
+  `NAME` varchar(255) NOT NULL,
+  `DESCRIPTION` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`NAME`),
+  UNIQUE KEY `NAME` (`NAME`,`DESCRIPTION`),
+  CONSTRAINT `EFFORT_CATEGORIE_ARTIFACT` FOREIGN KEY (`NAME`) REFERENCES `artifacts` (`NAME`),
+  CONSTRAINT `EFFORT_CATEGORIE_DEFECTS` FOREIGN KEY (`NAME`) REFERENCES `defects` (`NAME`),
+  CONSTRAINT `EFFORT_CATEGORIE_INTERRUPTIONS` FOREIGN KEY (`NAME`) REFERENCES `interruptions` (`NAME`),
+  CONSTRAINT `EFFORT_CATEGORIE_PLANS` FOREIGN KEY (`NAME`) REFERENCES `plans` (`NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE ARTIFACTS;
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                |
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ARTIFACTS | CREATE TABLE `artifacts` (
+  `NAME` varchar(255) NOT NULL,
+  `DESCRIPTION` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`NAME`),
+  UNIQUE KEY `NAME` (`NAME`,`DESCRIPTION`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE PLANS;
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                            |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| PLANS | CREATE TABLE `plans` (
+  `NAME` varchar(255) NOT NULL,
+  `DESCRIPTION` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`NAME`),
+  UNIQUE KEY `NAME` (`NAME`,`DESCRIPTION`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE INTERRUPTIONS;
++---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table         | Create Table                                                                                                                                                                                                                                    |
++---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| INTERRUPTIONS | CREATE TABLE `interruptions` (
+  `NAME` varchar(255) NOT NULL,
+  `DESCRIPTION` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`NAME`),
+  UNIQUE KEY `NAME` (`NAME`,`DESCRIPTION`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE DEFECTS;
++---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                              |
++---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DEFECTS | CREATE TABLE `defects` (
+  `NAME` varchar(255) NOT NULL,
+  `DESCRIPTION` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`NAME`),
+  UNIQUE KEY `NAME` (`NAME`,`DESCRIPTION`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> Terminal close -- exit!
+mysql> USE PETS_ROLES;
+Database changed
+mysql> select * from life_cycle;
++-----------+--------------------------------------+
+| NAME      | DESCRIPTION                          |
++-----------+--------------------------------------+
+| abc       | it is able to save a b and c values. |
+| Waterfall | Waterfall                            |
++-----------+--------------------------------------+
+2 rows in set (0.07 sec)
+
+mysql> select * from step;
++-------+----------------------------+
+| NAME  | DESCRIPTION                |
++-------+----------------------------+
+| aaa   | define the aaa differently |
+| first | frst step                  |
++-------+----------------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from conditions;
++--------+-------------------------+
+| NAME   | DESCRIPTION             |
++--------+-------------------------+
+| select | item should be selected |
++--------+-------------------------+
+1 row in set (0.07 sec)
+
+mysql> select * from task;
+Empty set (0.01 sec)
+
+mysql> select * from defects;
++------+-------------------+
+| NAME | DESCRIPTION       |
++------+-------------------+
+| task | task not be added |
++------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from plans;
++---------+------------------------------+
+| NAME    | DESCRIPTION                  |
++---------+------------------------------+
+| proceed | plan to proceed step by step |
++---------+------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from artifacts;
++------+----------------------------------------------------+
+| NAME | DESCRIPTION                                        |
++------+----------------------------------------------------+
+| xyz  | having the different values with different working |
++------+----------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from effort_categories;
+Empty set (0.07 sec)
+
+mysql> insert into effort_categories
+    -> values('artifacts', 'created the artifact list');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`pets_roles`.`effort_categories`, CONSTRAINT `EFFORT_CATEGORIE_ARTIFACT` FOREIGN KEY (`NAME`) REFERENCES `artifacts` (`NAME`))
+mysql> Terminal close -- exit!
+mysql> use pets_roles;
+Database changed
+mysql> select * from life_cycle;
++-----------+--------------------------------------+
+| NAME      | DESCRIPTION                          |
++-----------+--------------------------------------+
+| abc       | it is able to save a b and c values. |
+| Waterfall | Waterfall                            |
++-----------+--------------------------------------+
+2 rows in set (0.07 sec)
+
+mysql> select * from life_cycle;
++-----------+-----------------------------------------------+
+| NAME      | DESCRIPTION                                   |
++-----------+-----------------------------------------------+
+| abc       | it is able to save a b and c values.          |
+| Waterfall | Waterfall                                     |
+| xzt       | go to the first of x then y and at the lasr x |
++-----------+-----------------------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from life_cycle;
++-----------+-----------------------------------------------+
+| NAME      | DESCRIPTION                                   |
++-----------+-----------------------------------------------+
+| abc       | it is able to save a b and c values.          |
+| Waterfall | Waterfall                                     |
+| xyz       | go to the first of x then y and at the lasr x |
+| xzt       | go to the first of x then y and at the lasr x |
++-----------+-----------------------------------------------+
+4 rows in set (0.07 sec)
+
+mysql> select * from life_cycle;
++-----------+-----------------------------------------------+
+| NAME      | DESCRIPTION                                   |
++-----------+-----------------------------------------------+
+| abc       | it is able to save a b and c values.          |
+| Waterfall | Waterfall                                     |
+| xyt       | go to the first of x then y and at the lasr x |
+| xyz       | go to the first of x then y and at the lasr x |
+| xzt       | go to the first of x then y and at the lasr x |
++-----------+-----------------------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from effort_categories;
+Empty set (0.00 sec)
+
+mysql> select * from effort_categories;
+Empty set (0.00 sec)
+
+mysql> select * from task;
+Empty set (0.00 sec)
+
+mysql> select * from life_cycle;
++-----------+-----------------------------------------------+
+| NAME      | DESCRIPTION                                   |
++-----------+-----------------------------------------------+
+| abc       | it is able to save a b and c values.          |
+| Waterfall | Waterfall                                     |
+| xyt       | go to the first of x then y and at the lasr x |
+| xyz       | go to the first of x then y and at the lasr x |
+| xzt       | go to the first of x then y and at the lasr x |
++-----------+-----------------------------------------------+
+5 rows in set (0.10 sec)
+
+mysql> select * from life_cycle;
++-----------+-----------------------------------------------+
+| NAME      | DESCRIPTION                                   |
++-----------+-----------------------------------------------+
+| abc       | it is able to save a b and c values.          |
+| Waterfall | Waterfall                                     |
+| xyt       | go to the first of x then y and at the lasr x |
+| xyz       | go to the first of x then y and at the lasr x |
+| xzt       | go to the first of x then y and at the lasr x |
++-----------+-----------------------------------------------+
+5 rows in set (0.03 sec)
+
+mysql> select * from life_cycle;
++-----------+-----------------------------------------------+
+| NAME      | DESCRIPTION                                   |
++-----------+-----------------------------------------------+
+| abc       | it is able to save a b and c values.          |
+| Abgg      | dfgfhhghjjjiui                                |
+| sd        | software development                          |
+| Waterfall | Waterfall                                     |
+| xyt       | go to the first of x then y and at the lasr x |
+| xyz       | go to the first of x then y and at the lasr x |
+| xzt       | go to the first of x then y and at the lasr x |
++-----------+-----------------------------------------------+
+7 rows in set (0.07 sec)
+
+mysql> notee;
